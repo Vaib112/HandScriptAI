@@ -18,7 +18,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/prescriptions', {
+        const res = await fetch('https://generous-charisma-production.up.railway.app/api/prescriptions', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -40,7 +40,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this prescription?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/prescriptions/${id}`, {
+      const res = await fetch(`https://generous-charisma-production.up.railway.app/api/prescriptions/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

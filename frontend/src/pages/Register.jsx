@@ -8,7 +8,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -19,11 +19,11 @@ export default function Register() {
       return toast.error('Passwords do not match');
     }
     
-    setError('');
+    // setError('');
     setIsLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3001/api/auth/register', {
+      const res = await fetch('https://generous-charisma-production.up.railway.app/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -43,10 +43,10 @@ export default function Register() {
   };
 
   const handleGoogleSuccess = async (credentialResponse) => {
-    setError('');
+    // setError('');
     setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:3001/api/auth/google', {
+      const res = await fetch('https://generous-charisma-production.up.railway.app/api/auth/google', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential: credentialResponse.credential })

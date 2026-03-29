@@ -42,7 +42,7 @@ export default function Upload({ onUpload, token }) {
 
     try {
       // Connect specifically passing JWT Ticket in Bearer auth
-      const res = await fetch("http://localhost:3001/api/ocr", {
+      const res = await fetch("https://generous-charisma-production.up.railway.app/api/ocr", {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`
