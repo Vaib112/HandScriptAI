@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-const BASE_URL = import.meta.env.BASE_URL;
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Dashboard() {
   const [records, setRecords] = useState([]);
@@ -20,7 +20,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/prescriptions`, {
+        console.log("Fetching prescription history with token:", `${VITE_BASE_URL}/api/prescriptions`);  
+        const res = await fetch(`${VITE_BASE_URL}/api/prescriptions`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -42,7 +43,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this prescription?")) return;
     try {
-      const res = await fetch(`${BASE_URL}/api/prescriptions/${id}`, {
+      const res = await fetch(`${VITE_BASE_URL}/api/prescriptions/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

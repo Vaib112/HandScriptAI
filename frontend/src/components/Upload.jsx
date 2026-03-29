@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-const BASE_URL = import.meta.env.BASE_URL;
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export default function Upload({ onUpload, token }) {
   const [file, setFile] = useState(null);
@@ -43,7 +43,7 @@ export default function Upload({ onUpload, token }) {
 
     try {
       // Connect specifically passing JWT Ticket in Bearer auth
-      const res = await fetch(`${BASE_URL}/api/ocr`, {
+      const res = await fetch(`${VITE_BASE_URL}/api/ocr`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`

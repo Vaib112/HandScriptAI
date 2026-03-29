@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
 import toast from 'react-hot-toast';
 
-const BASE_URL = import.meta.env.BASE_URL;
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-const BASE_URL = import.meta.env.BASE_URL;
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
   const handleSubmit = async (e) => {
@@ -22,7 +22,8 @@ const BASE_URL = import.meta.env.BASE_URL;
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${BASE_URL}/api/auth/login`, {
+      console.log("Attempting login with:", `${VITE_BASE_URL}/api/auth/login`)
+      const res = await fetch(`${VITE_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -45,7 +46,7 @@ const BASE_URL = import.meta.env.BASE_URL;
     // setError('');
     setIsLoading(true);
     try {
-      const res = await fetch(`${BASE_URL}/api/auth/google`, {
+      const res = await fetch(`${VITE_BASE_URL}/api/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential: credentialResponse.credential })
