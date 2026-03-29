@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
 import toast from 'react-hot-toast';
+const BASE_URL = import.meta.env.BASE_URL;
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      const res = await fetch('https://generous-charisma-production.up.railway.app/api/auth/register', {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -46,7 +47,7 @@ export default function Register() {
     // setError('');
     setIsLoading(true);
     try {
-      const res = await fetch('https://generous-charisma-production.up.railway.app/api/auth/google', {
+      const res = await fetch(`${BASE_URL}/api/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential: credentialResponse.credential })
